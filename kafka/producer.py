@@ -105,7 +105,10 @@ def main():
     Main function to run the producer.
     """
     # Configuration
-    KAFKA_BROKER = 'localhost:9092'
+    # Use 'localhost:9092' when running from host machine
+    # Use 'kafka:29092' when running inside Docker container
+    import os
+    KAFKA_BROKER = os.getenv('KAFKA_BROKER', 'localhost:9092')
     TOPIC_NAME = 'transactions'
     CSV_FILE = 'data/transactions.csv'
 
